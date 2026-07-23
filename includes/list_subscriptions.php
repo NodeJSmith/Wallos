@@ -394,7 +394,8 @@ function printSubscriptions($subscriptions, $sort, $categories, $members, $i18n,
                             </li>
                             <?php
                         }
-                        if (!$subscription['one_time'] && !$subscription['inactive'] && empty($subscription['paid_this_cycle'])) {
+                        if (!$subscription['one_time'] && !$subscription['inactive']) {
+                            if (empty($subscription['paid_this_cycle'])) {
                             ?>
                             <li class="mark-paid" title="<?= translate('mark_as_paid', $i18n) ?>"
                                 onClick="markAsPaid(event, <?= $subscription['id'] ?>)">
@@ -402,6 +403,15 @@ function printSubscriptions($subscriptions, $sort, $categories, $members, $i18n,
                                 <?= translate('mark_as_paid', $i18n) ?>
                             </li>
                             <?php
+                            } else {
+                            ?>
+                            <li class="mark-paid" title="<?= translate('mark_as_unpaid', $i18n) ?>"
+                                onClick="unmarkPaid(event, <?= $subscription['id'] ?>)">
+                                <i class="fa-regular fa-circle-xmark"></i>
+                                <?= translate('mark_as_unpaid', $i18n) ?>
+                            </li>
+                            <?php
+                            }
                         }
                         ?>
                     </ul>

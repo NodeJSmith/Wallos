@@ -244,7 +244,11 @@ function renderSubscriptionDetails(subscription) {
   }
 
   const markPaidButton = document.querySelector('#details-mark-paid-button');
-  if (!isOneTime && !Number(subscription.inactive) && !detailsIsPaidThisCycle(subscription)) {
+  const unmarkPaidButton = document.querySelector('#details-unmark-paid-button');
+  const canTogglePaid = !isOneTime && !Number(subscription.inactive);
+  const paidThisCycle = detailsIsPaidThisCycle(subscription);
+
+  if (canTogglePaid && !paidThisCycle) {
     markPaidButton.classList.remove('hide');
     markPaidButton.onclick = function (e) {
       markAsPaid(e, subscription.id);
@@ -252,6 +256,16 @@ function renderSubscriptionDetails(subscription) {
     };
   } else {
     markPaidButton.classList.add('hide');
+  }
+
+  if (canTogglePaid && paidThisCycle) {
+    unmarkPaidButton.classList.remove('hide');
+    unmarkPaidButton.onclick = function (e) {
+      unmarkPaid(e, subscription.id);
+      closeSubscriptionDetails();
+    };
+  } else {
+    unmarkPaidButton.classList.add('hide');
   }
 
   document.querySelector('#details-export-button').onclick = function () {

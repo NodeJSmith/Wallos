@@ -40,6 +40,11 @@ require_once __DIR__ . '/getdbkeys.php';
       aria-label="<?= translate('mark_as_paid', $i18n) ?>">
       <i class="fa-solid fa-circle-check"></i>
     </button>
+    <button type="button" class="button secondary-button details-action-button details-unmark-paid-button hide"
+      id="details-unmark-paid-button" title="<?= translate('mark_as_unpaid', $i18n) ?>"
+      aria-label="<?= translate('mark_as_unpaid', $i18n) ?>">
+      <i class="fa-regular fa-circle-xmark"></i>
+    </button>
   </div>
   <div class="details-progress-track" id="details-progress-track">
     <span class="details-progress" id="details-progress"></span>
