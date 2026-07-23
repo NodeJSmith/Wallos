@@ -245,7 +245,7 @@ function renderSubscriptionDetails(subscription) {
 
   const markPaidButton = document.querySelector('#details-mark-paid-button');
   const unmarkPaidButton = document.querySelector('#details-unmark-paid-button');
-  const canTogglePaid = !isOneTime && !Number(subscription.inactive);
+  const canTogglePaid = !isOneTime && !subscription.inactive;
   const paidThisCycle = detailsIsPaidThisCycle(subscription);
 
   if (canTogglePaid && !paidThisCycle) {
