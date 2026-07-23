@@ -243,6 +243,17 @@ function renderSubscriptionDetails(subscription) {
     urlButton.classList.add('hide');
   }
 
+  const markPaidButton = document.querySelector('#details-mark-paid-button');
+  if (!isOneTime && !subscription.inactive && !detailsIsPaidThisCycle(subscription)) {
+    markPaidButton.classList.remove('hide');
+    markPaidButton.onclick = function (e) {
+      markAsPaid(e, subscription.id);
+      closeSubscriptionDetails();
+    };
+  } else {
+    markPaidButton.classList.add('hide');
+  }
+
   document.querySelector('#details-export-button').onclick = function () {
     exportCalendar(subscription.id);
   };
