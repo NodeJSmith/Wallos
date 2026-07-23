@@ -244,7 +244,7 @@ function renderSubscriptionDetails(subscription) {
   }
 
   const markPaidButton = document.querySelector('#details-mark-paid-button');
-  if (!isOneTime && !subscription.inactive && !detailsIsPaidThisCycle(subscription)) {
+  if (!isOneTime && !Number(subscription.inactive) && !detailsIsPaidThisCycle(subscription)) {
     markPaidButton.classList.remove('hide');
     markPaidButton.onclick = function (e) {
       markAsPaid(e, subscription.id);
